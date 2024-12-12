@@ -1,13 +1,24 @@
 import FilterSideBar from "@/components/FilterSideBar";
-import JobListItem from "@/components/JobListItem";
-import prisma from "@/lib/prisma";
+import JobsResults from "@/components/JobsResults";
+import { JobFilterValues } from "@/lib/validation";
+interface PageProps {
+  searchParams: {
+    q?: string;
+    type?: string;
+    location?: string;
+    remote?: string;
+  };
+}
+export default async function Home({
+  searchParams: { q, type, location, remote },
+}: PageProps) {
 
-export default async function Home() {
-  const jobs = await prisma.job.findMany({
-    where: { approved: true },
-    orderBy: { createdAt: "desc" },
-  });
-
+  const filterValues : JobFilterValues = {
+q,
+type,
+location,
+remote: remote === "true",
+  }
   return (
     <main className="m-auto my-10 max-w-5xl px-3">
       <h1 className="my-2 text-center text-4xl font-bold tracking-tight lg:text-5xl">
@@ -18,11 +29,7 @@ export default async function Home() {
       </h3>
       <section className="flex flex-col gap-4 md:flex-row">
         <FilterSideBar />
-        <div className="grow space-y-4">
-          {jobs.map((job) => (
-            <JobListItem job={job} key={job.id} />
-          ))}
-        </div>
+        <JobsResults filterValues={filterValues} />
       </section>
     </main>
   );
