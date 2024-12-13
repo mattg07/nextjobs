@@ -12,7 +12,7 @@ export default async function JobsResults({
 }: JobResultsProps) {
 
   const searchString = q
-    ?.split("")
+    ?.split(" ")
     .filter((word) => word.length > 0)
     .join(" & ");
 

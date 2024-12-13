@@ -1,17 +1,25 @@
 import FilterSideBar from "@/components/FilterSideBar";
 import JobsResults from "@/components/JobsResults";
+import { SkeletonCard } from "@/components/SkeletonCard";
 import { JobFilterValues } from "@/lib/validation";
+import { Suspense } from "react";
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
     type?: string;
     location?: string;
     remote?: string;
-  };
+  }>;
 }
-export default async function Home({
-  searchParams: { q, type, location, remote },
-}: PageProps) {
+export default async function Home(props: PageProps) {
+  const searchParams = await props.searchParams;
+
+  const {
+    q,
+    type,
+    location,
+    remote
+  } = searchParams;
 
   const filterValues : JobFilterValues = {
 q,
@@ -29,7 +37,10 @@ remote: remote === "true",
       </h3>
       <section className="flex flex-col gap-4 md:flex-row">
         <FilterSideBar />
+        <Suspense fallback={<SkeletonCard/>}>
+
         <JobsResults filterValues={filterValues} />
+        </Suspense>
       </section>
     </main>
   );
