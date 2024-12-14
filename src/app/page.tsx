@@ -2,6 +2,7 @@ import FilterSideBar from "@/components/FilterSideBar";
 import JobsResults from "@/components/JobsResults";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { JobFilterValues } from "@/lib/validation";
+import { Metadata } from "next";
 import { Suspense } from "react";
 interface PageProps {
   searchParams: Promise<{
@@ -11,35 +12,56 @@ interface PageProps {
     remote?: string;
   }>;
 }
+
+function getTitle({ q, type, location, remote }: JobFilterValues) {
+  const titlePrefix = q
+    ? `${q} Jobs`
+    : type
+      ? `${type} Developer Jobs`
+      : remote
+        ? "Remote Developer Jobs"
+        : "All developer Jobs";
+  const tittleSuffix = location ? ` in ${location}` : "";
+  return `${titlePrefix}${tittleSuffix}`;
+}
+
+export async function generateMetadata(props: PageProps) : Promise<Metadata> {
+  const searchParams = await props.searchParams
+  const { q, type, location, remote } = searchParams;
+
+  return {
+    title: getTitle({
+      q,
+      type,
+      location,
+      remote: remote === "true", // Convert string "true" to boolean true
+    }),
+  };
+}
+
 export default async function Home(props: PageProps) {
   const searchParams = await props.searchParams;
 
-  const {
+  const { q, type, location, remote } = searchParams;
+
+  const filterValues: JobFilterValues = {
     q,
     type,
     location,
-    remote
-  } = searchParams;
-
-  const filterValues : JobFilterValues = {
-q,
-type,
-location,
-remote: remote === "true",
-  }
+    remote: remote === "true",
+  };
   return (
     <main className="m-auto my-10 max-w-5xl px-3">
       <h1 className="my-2 text-center text-4xl font-bold tracking-tight lg:text-5xl">
-        Developer Jobs
+        {getTitle(filterValues)}
       </h1>
       <h3 className="my-2 text-center text-lg font-semibold text-gray-600">
         Find your dream job in tech
       </h3>
       <section className="flex flex-col gap-4 md:flex-row">
         <FilterSideBar defaultValues={filterValues} />
-        <Suspense fallback={<SkeletonCard/>}>
-
-        <JobsResults filterValues={filterValues} />
+        <Suspense fallback={<SkeletonCard />}>
+          <JobsResults filterValues={filterValues} />
         </Suspense>
       </section>
     </main>
