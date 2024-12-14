@@ -36,7 +36,7 @@ remote: remote === "true",
         Find your dream job in tech
       </h3>
       <section className="flex flex-col gap-4 md:flex-row">
-        <FilterSideBar />
+        <FilterSideBar defaultValues={filterValues} />
         <Suspense fallback={<SkeletonCard/>}>
 
         <JobsResults filterValues={filterValues} />
