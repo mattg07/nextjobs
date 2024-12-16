@@ -130,7 +130,16 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Location</FormLabel>
                   <FormControl>
-                    <Select defaultValue="" {...field}>
+                    <Select
+                      onChange={(e) => {
+                        field.onChange(e);
+                        if (e.currentTarget.value === "Remote") {
+                          trigger("location");
+                        }
+                      }}
+                      defaultValue=""
+                      {...field}
+                    >
                       <option value="" hidden>
                         Select an option
                       </option>
@@ -220,37 +229,41 @@ export default function NewJobForm() {
               </div>
             </div>
             <FormField
-            control={control}
-            name="description"
-            render={({field}) => (
-              <FormItem>
-                <Label onClick={() => setFocus("description")} >Descritpion</Label>
-                <FormControl>
-                <TextEditor
-                onChange={draft => field.onChange(draftToMarkdown(draft)) }
-                ref={field.ref}
-                />
-                </FormControl>
-                <FormMessage/>
-              </FormItem>
-            )}
+              control={control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <Label onClick={() => setFocus("description")}>
+                    Descritpion
+                  </Label>
+                  <FormControl>
+                    <TextEditor
+                      onChange={(draft) =>
+                        field.onChange(draftToMarkdown(draft))
+                      }
+                      ref={field.ref}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-                        <FormField
+            <FormField
               control={control}
               name="salary"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Salary</FormLabel>
                   <FormControl>
-                    <Input {...field}  type="number"/>
+                    <Input {...field} type="number" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          <LoadingButton type="submit" loading={isSubmitting}>
-            Submit
-            </LoadingButton>  
+            <LoadingButton type="submit" loading={isSubmitting}>
+              Submit
+            </LoadingButton>
           </form>
         </Form>
       </div>
