@@ -15,6 +15,9 @@ import { Input } from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import { jobTypes, locationType } from "@/lib/JobsTypes";
 import LocationInput from "@/components/LocationInput";
+import { X } from "lucide-react";
+import { Label } from "@radix-ui/react-label";
+import TextEditor from "@/components/TextEditor";
 
 export default function NewJobForm() {
   const form = useForm<CreateJobValues>({
@@ -152,9 +155,80 @@ export default function NewJobForm() {
                       ref={field.ref}
                     />
                   </FormControl>
+                  {watch("location") && (
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => {
+                          setValue("location", "", { shouldValidate: true });
+                        }}
+                        type="button"
+                      >
+                        <X size={20} />
+                      </button>
+                      <span className="text-sm">{watch("location")}</span>
+                    </div>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <div className="space-y-2">
+              <Label htmlFor="applicationEmail">How to apply</Label>
+              <div className="flex justify-between">
+                <FormField
+                  control={control}
+                  name="applicationEmail"
+                  render={({ field }) => (
+                    <FormItem className="grow">
+                      <FormControl>
+                        <div className="flex items-center">
+                          <Input
+                            id="applicationEmail"
+                            placeholder="Email"
+                            type="email"
+                            {...field}
+                          />
+                          <span className="mx-2"> Or</span>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="applicationUrl"
+                  render={({ field }) => (
+                    <FormItem className="grow">
+                      <FormControl>
+                        <Input
+                          placeholder="Website"
+                          type="url"
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            trigger("applicationEmail");
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <FormField
+            control={control}
+            name="description"
+            render={({field}) => (
+              <FormItem>
+                <Label>Descritpion</Label>
+                <FormControl>
+                <TextEditor />
+                </FormControl>
+                <FormMessage/>
+              </FormItem>
+            )}
             />
           </form>
         </Form>
