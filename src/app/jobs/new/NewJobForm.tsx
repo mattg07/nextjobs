@@ -18,6 +18,8 @@ import LocationInput from "@/components/LocationInput";
 import { X } from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 import TextEditor from "@/components/TextEditor";
+import { draftToMarkdown } from "markdown-draft-js";
+import LoadingButton from "@/components/LoadingButton";
 
 export default function NewJobForm() {
   const form = useForm<CreateJobValues>({
@@ -222,14 +224,33 @@ export default function NewJobForm() {
             name="description"
             render={({field}) => (
               <FormItem>
-                <Label>Descritpion</Label>
+                <Label onClick={() => setFocus("description")} >Descritpion</Label>
                 <FormControl>
-                <TextEditor />
+                <TextEditor
+                onChange={draft => field.onChange(draftToMarkdown(draft)) }
+                ref={field.ref}
+                />
                 </FormControl>
                 <FormMessage/>
               </FormItem>
             )}
             />
+                        <FormField
+              control={control}
+              name="salary"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Salary</FormLabel>
+                  <FormControl>
+                    <Input {...field}  type="number"/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <LoadingButton type="submit" loading={isSubmitting}>
+            Submit
+            </LoadingButton>  
           </form>
         </Form>
       </div>
