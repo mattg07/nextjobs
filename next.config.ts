@@ -1,32 +1,32 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'registry.npmmirror.com', // Remove the wildcard here
-        port: '',
+        hostname: 'registry.npmmirror.com',
       },
       {
         protocol: 'https',
-        hostname: 'logodownload.org', // Remove the wildcard here
-        port: '',
+        hostname: 'lxznkuon6foz2yha.public.blob.vercel-storage.com',
       },
       {
         protocol: 'https',
-        hostname: 'upload.wikimedia.org', // Remove the wildcard here
-        port: '',
+        hostname: 'logodownload.org',
       },
       {
         protocol: 'https',
-        hostname: 'encrypted-tbn0.gstatic.com', // Remove the wildcard here
-        port: '',
+        hostname: 'upload.wikimedia.org',
       },
       {
         protocol: 'https',
-        hostname: 'registry.npmmirror.com', // Remove the wildcard here
-        port: '',
+        hostname: 'encrypted-tbn0.gstatic.com',
       },
     ],
   },

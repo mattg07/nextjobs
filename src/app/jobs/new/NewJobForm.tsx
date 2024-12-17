@@ -40,8 +40,10 @@ export default function NewJobForm() {
   async function onSubmit(values: CreateJobValues) {
     const formData = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (value) {
+      if (key === "companyLogo" && value instanceof File) {
         formData.append(key, value);
+      } else if (value) {
+        formData.append(key, value as string | Blob);
       }
     });
 
@@ -57,7 +59,7 @@ export default function NewJobForm() {
     <main className="m-auto max-w-3xl space-y-10 py-10">
       <div>
         <h1 className="text-center text-2xl font-bold">
-          Get your job posting seem by thousands of job seekers
+          Get your job posting seen by thousands of job seekers
         </h1>
       </div>
       <div className="space-y-6 rounded-lg border p-4">
@@ -117,7 +119,7 @@ export default function NewJobForm() {
             />
             <FormField
               control={control}
-              name="companyName"
+              name="companyLogo"
               render={({ field: { value, ...fieldValues } }) => (
                 <FormItem>
                   <FormLabel>Company Logo</FormLabel>
@@ -247,7 +249,7 @@ export default function NewJobForm() {
               render={({ field }) => (
                 <FormItem>
                   <Label onClick={() => setFocus("description")}>
-                    Descritpion
+                    Description
                   </Label>
                   <FormControl>
                     <TextEditor
