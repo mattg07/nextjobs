@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 import {put} from "@vercel/blob"
 import path from "path";
 import prisma from "@/lib/prisma"
+import { redirect } from "next/navigation";
 
 
 
@@ -58,5 +59,5 @@ export async function createJobPosting(formData: FormData) {
         }
 
     })
-
+    redirect("/job-submitted")
 }
