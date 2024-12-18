@@ -6,7 +6,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, MapPinIcon, Building2Icon, BanknoteIcon } from 'lucide-react';
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const slug = await params?.slug;
 
   if (typeof slug !== "string") {

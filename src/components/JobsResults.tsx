@@ -45,9 +45,9 @@ export default async function JobsResults({
   return (
     <div className="grow space-y-4">
       {jobs.map((job) => (
-        <Link key={job.id} href={`/${job.slug}`}>
+        <Link key={job.id} href={`/jobs/${job.slug}`}>
         
-        <JobListItem job={job} key={job.id} />
+        <JobListItem job={job} />
         </Link>
       ))}
       {
