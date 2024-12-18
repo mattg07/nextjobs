@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { cache } from "react";
 import { Metadata } from "next";
+import Markdown from "@/components/Markdown";
 
 interface JobPageProps {
   params: { slug: string };
@@ -87,10 +88,11 @@ export default async function Page({ params }: JobPageProps) {
         <CardContent className="space-y-6">
           <section>
             <h2 className="mb-2 text-2xl font-semibold">Job Description</h2>
-            <div
+            {job.description && <Markdown>{job.description}</Markdown>}
+            {/* <div
               className="prose max-w-none"
               dangerouslySetInnerHTML={{ __html: job.description }}
-            />
+            /> */}
           </section>
         </CardContent>
         <CardFooter className="border-red-900">
