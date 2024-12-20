@@ -41,12 +41,32 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams(){
+  const jobs = await prisma.job.findMany({
+    where: {approved : true},
+    select: {slug:true},
+  });
+  return jobs.map(({slug}) => slug)
+}
+
 
 
 
 export default async function Page({ params }: JobPageProps) {
   const { slug } = await params;
   const job = await getJob(slug);
+
+
+const {applicationEmail, applicationUrl} = job
+
+
+const applicationLink  = applicationEmail ?
+`mailto:${applicationEmail}` : applicationUrl
+
+if(!applicationLink){
+  console.error("Job have no email or application link")
+}
+
   return (
     <main className="container mx-auto my-8 px-4">
       <Card className="mx-auto max-w-4xl">
@@ -97,8 +117,9 @@ export default async function Page({ params }: JobPageProps) {
         </CardContent>
         <CardFooter className="border-red-900">
           <Button size="lg" className="m-auto">
-            Apply Now
+          <a href={applicationLink as string}>Apply now</a>
           </Button>
+          
         </CardFooter>
       </Card>
     </main>
