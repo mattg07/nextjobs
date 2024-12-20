@@ -35,7 +35,7 @@ export async function generateMetadata(props: PageProps) : Promise<Metadata> {
       q,
       type,
       location,
-      remote: remote === "true", // Convert string "true" to boolean true
+      remote: remote === "true", 
     }),
   };
 }

@@ -25,6 +25,18 @@ import { createJobPosting } from "./actions";
 export default function NewJobForm() {
   const form = useForm<CreateJobValues>({
     resolver: zodResolver(createJobSchema),
+    defaultValues: {
+      title: "",
+      type: "",
+      companyName: "",
+      companyLogo: undefined,
+      locationType: "",
+      location: "",
+      applicationEmail: "",
+      applicationUrl: "",
+      description: "",
+      salary: "",
+    },
   });
 
   const {
@@ -89,7 +101,7 @@ export default function NewJobForm() {
                 <FormItem>
                   <FormLabel>Job Type</FormLabel>
                   <FormControl>
-                    <Select defaultValue="" {...field}>
+                    <Select value={field.value} onChange={field.onChange}>
                       <option value="" hidden>
                         Select an option
                       </option>
@@ -146,14 +158,13 @@ export default function NewJobForm() {
                   <FormLabel>Location</FormLabel>
                   <FormControl>
                     <Select
+                      value={field.value}
                       onChange={(e) => {
                         field.onChange(e);
                         if (e.currentTarget.value === "Remote") {
                           trigger("location");
                         }
                       }}
-                      defaultValue=""
-                      {...field}
                     >
                       <option value="" hidden>
                         Select an option
