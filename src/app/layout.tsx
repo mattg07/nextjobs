@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {  Poppins, Montserrat} from "next/font/google";
+
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+
+export const poppins = Poppins({
+  variable:"--font-poppins",
+  subsets: ['latin'],
+  weight: ['400', '700'], // You can customize the font weights you need
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"]
+})
 
 export const metadata: Metadata = {
   title: "Remote Jobs",
@@ -26,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} min-w-[350px] antialiased`}
+        className={`${montserrat.variable}  min-w-[350px] antialiased`}
       >
         <Navbar/>
         {children}

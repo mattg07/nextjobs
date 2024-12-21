@@ -46,8 +46,8 @@ function JobListItem({
               <MapPin className="mr-1 h-4 w-4" />
               {location} • {locationType}
             </div>
-            <div className="flex items-center">
-              <DollarSignIcon className="mr-1 h-4 w-4" />
+            <div className="flex items-center ">
+              <DollarSignIcon className="mr-1 h-4 w-4 " />
               {salary}
             </div>
             <div className="flex items-center">

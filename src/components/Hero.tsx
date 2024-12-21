@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
-    <main className="w-full bg-gradient-to-br from-orange-400 to-pink-500 text-white">
+    <main className="w-full bg-gradient-to-br from-orange-400 to-amber-700 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center py-20 text-center lg:py-32">
           <h1 className="mb-6 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
