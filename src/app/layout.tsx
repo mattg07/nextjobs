@@ -3,6 +3,9 @@ import {  Poppins, Montserrat} from "next/font/google";
 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import InfoSection from "@/components/InfoSection";
+import Footer from "@/components/Footer";
 
 
 export const poppins = Poppins({
@@ -32,7 +35,10 @@ export default function RootLayout({
         className={`${montserrat.variable}  min-w-[350px] antialiased`}
       >
         <Navbar/>
+        <Hero/>
         {children}
+        <InfoSection/>
+        <Footer/>
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 import FilterSideBar from "@/components/FilterSideBar";
-import Hero from "@/components/Hero";
 import JobsResults from "@/components/JobsResults";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { JobFilterValues } from "@/lib/validation";
@@ -53,7 +52,6 @@ export default async function Home(props: PageProps) {
   };
   return (
     <>
-      <Hero/>
     <main className="m-auto my-10 max-w-5xl px-3">
       <h1 className="my-2 text-center text-4xl font-bold tracking-tight lg:text-5xl">
         {getTitle(filterValues)}
