@@ -7,7 +7,6 @@ export default function FormSubmitButton(
   props: React.ButtonHTMLAttributes<HTMLButtonElement>,
 ) {
   const { pending } = useFormStatus();
-  return (
-  <LoadingButton {...props} type="submit" loading={pending} />
-  );
+
+  return <LoadingButton {...props} type="submit" loading={pending} />;
 }

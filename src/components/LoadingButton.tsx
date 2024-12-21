@@ -14,7 +14,6 @@ return (
     {...props}
     type="submit"
     disabled={props.disabled || loading}
-    className="w-full"
   >
     <span className="flex items-center text-white justify-center gap-1">
       {loading && <Loader2 size={16} className="animate-spin "/>}
