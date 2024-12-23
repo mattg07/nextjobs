@@ -1,9 +1,9 @@
 "use client";
 
 import FormSubmitButton from "@/components/FormSubmitButton";
-import { Job } from "@prisma/client";
-import { useActionState } from "react"; // Updated import
+import { useActionState } from "react"; 
 import { approveSubmission, deleteJob } from "../action";
+import { Job } from "@prisma/client";
 
 interface AdminSidebarProps {
   job: Job;
