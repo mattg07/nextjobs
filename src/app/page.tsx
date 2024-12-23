@@ -1,6 +1,8 @@
 import FilterSideBar from "@/components/FilterSideBar";
 import JobsResults from "@/components/JobsResults";
 import { SkeletonCard } from "@/components/SkeletonCard";
+import InfoSection from "@/components/InfoSection";
+
 import { JobFilterValues } from "@/lib/validation";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -52,7 +54,9 @@ export default async function Home(props: PageProps) {
   };
   return (
     <>
-    <main className="m-auto my-10 max-w-5xl px-3">
+    <main className="m-auto mt-10 max-w-screen px-3">
+      <div className="max-w-5xl m-auto">
+
       <h1 className="my-2 text-center text-4xl font-bold tracking-tight lg:text-5xl">
         {getTitle(filterValues)}
       </h1>
@@ -65,6 +69,9 @@ export default async function Home(props: PageProps) {
           <JobsResults filterValues={filterValues} />
         </Suspense>
       </section>
+      </div>
+              <InfoSection/>
+      
     </main>
     </>
   );
