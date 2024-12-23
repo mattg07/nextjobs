@@ -6,6 +6,7 @@ import InfoSection from "@/components/InfoSection";
 import { JobFilterValues } from "@/lib/validation";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import Hero from "@/components/Hero";
 interface PageProps {
   searchParams: Promise<{
     q?: string;
@@ -54,7 +55,9 @@ export default async function Home(props: PageProps) {
   };
   return (
     <>
-    <main className="m-auto mt-10 max-w-screen px-3">
+    <main className="m-auto max-w-screen ">
+    <Hero/>
+
       <div className="max-w-5xl m-auto">
 
       <h1 className="my-2 text-center text-4xl font-bold tracking-tight lg:text-5xl">

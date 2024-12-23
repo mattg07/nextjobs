@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <main className="w-full overflow-hidden bg-gradient-to-br from-orange-400 to-amber-700 text-white">
+    <main className="w-full overflow-hiddenborder border-purple-800 bg-gradient-to-br from-orange-400 to-amber-700 text-white">
 
 
 
