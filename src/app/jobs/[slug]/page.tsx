@@ -20,7 +20,7 @@ import { Metadata } from "next";
 import Markdown from "@/components/Markdown";
 
 interface JobPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 const getJob = cache(async (slug: string) => {
