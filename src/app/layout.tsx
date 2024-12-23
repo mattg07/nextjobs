@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 export const poppins = Poppins({
   variable:"--font-poppins",
   subsets: ['latin'],
-  weight: ['400', '700'], // You can customize the font weights you need
+  weight: ['400', '700'],
 });
 
 const montserrat = Montserrat({
@@ -31,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body 
+      suppressHydrationWarning
         className={`${montserrat.variable}  min-w-[350px] antialiased`}
       >
         <Navbar/>
