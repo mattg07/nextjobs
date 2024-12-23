@@ -11,7 +11,7 @@ export default function InfoSection() {
           height={385}
           alt="image of guy sitting in front of a desk"
         />
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-lg font-semibold text-black">
           Because we care about your professional life
         </h2>
         <h3 className="text-black text-md">Take a quick quizz to find your perfect job!</h3>
