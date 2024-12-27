@@ -21,7 +21,7 @@ function JobListItem({
   },
 }: JobsListItemProps) {
   return (
-    <article className="group rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
+    <article className="group rounded-lg border  border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-900">
       <div className="flex items-start space-x-4">
         <div className="relative h-32  w-32 rounded-full">
           <Image

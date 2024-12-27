@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -6,10 +6,10 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <div className="flex items-center justify-center">
-            <Image src="/world.png" alt="logo" width={50} height={50} />
+            {/* <Image src="/world.png" alt="logo" width={50} height={50} /> */}
             <h1 className="text-2xl font-poppins font-bold">Mundo Jobs</h1>
           </div>
-          <ul className="mb-10 flex flex-col items-center justify-center gap-7 border-b border-gray-200 py-16 text-lg transition-all duration-500 md:flex-row md:gap-12">
+          <ul className="mb-10 flex flex-col items-center justify-center gap-7 border-b border-gray-200 py-12 text-lg transition-all duration-500 md:flex-row md:gap-12">
             <li>
               <a href="#" className="text-gray-800 hover:text-gray-900">
                 Privacy
